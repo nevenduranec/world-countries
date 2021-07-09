@@ -4,7 +4,7 @@ export default {
     },
     // Global page headers: https://go.nuxtjs.dev/config-head
     head: {
-        title: 'countries',
+        title: 'Frontend Mentor - REST Countries API with color theme switcher solution by Neven Đuranec',
         htmlAttrs: {
             lang: 'en',
         },
