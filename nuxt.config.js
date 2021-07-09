@@ -19,7 +19,8 @@ export default {
             {
                 hid: 'description',
                 name: 'description',
-                content: '',
+                content:
+                    'Frontend Mentor - REST Countries API with color theme switcher solution by Neven Đuranec',
             },
             {
                 name: 'format-detection',
