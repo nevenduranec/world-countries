@@ -1,11 +1,11 @@
 <template>
-    <div>
+    <main>
         <theheader />
         <div class="Container">
             <search />
             <list />
         </div>
-    </div>
+    </main>
 </template>
 
 <script>
