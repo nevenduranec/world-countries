@@ -1,0 +1,436 @@
+@property --offset {
+    syntax: '<length>';
+    inherits: false;
+    initial-value: 0;
+}
+
+button {
+    cursor: pointer;
+    border: 0;
+    background-color: transparent;
+}
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+:root {
+    --white: hsl(0, 0%, 100%);
+    --text: hsl(200, 15%, 8%);
+    --bg: hsl(0, 0%, 98%);
+    --dark-bg: var(--white);
+}
+
+
+.light-mode {
+    --white: hsl(0, 0%, 100%);
+    --text: hsl(200, 15%, 8%);
+    --bg: hsl(0, 0%, 98%);
+    --dark-bg: var(--white);
+}
+
+.dark-mode {
+    --text: var(--white);
+    --bg: hsl(207, 26%, 17%);
+    --dark-bg: hsl(209, 23%, 22%);
+}
+
+html {
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 300;
+    background-color: var(--bg);
+    color: var(--text);
+    font-size: 100%;
+}
+
+h1 {
+    font-weight: 800;
+}
+
+h2 {
+    font-weight: 600;
+}
+
+.Container {
+    max-width: 1440px;
+    padding: 0 40px;
+    margin: 0 auto;
+}
+
+header {
+    h1 {
+        font-size: min(max(20px, 4vw), 30px);
+    }
+
+    .Container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 40px;
+    }
+}
+
+header,
+input,
+.Countries-item,
+select,
+.Back {
+    background-color: var(--dark-bg);
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+
+.Countries {
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+    gap: 70px;
+    margin-bottom: 100px;
+
+    &-name {
+        line-height: 1.2;
+        flex-grow: 1;
+        text-decoration: underline 0.15em transparent;
+        text-underline-offset: var(--offset, 0.05em);
+        transition: --offset 300ms, text-decoration-color 300ms;
+    }
+
+    &-flag {
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        display: block;
+        width: 100%;
+        padding-top: calc((32 / 53) * 100%);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        border-bottom: 1px solid var(--bg);
+        transition: transform 0.3s ease;
+        transform: translate3d(0,0,0);
+        backface-visibility: hidden;
+    }
+
+    &-item {
+        position: relative;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+
+        &:focus,
+        &:focus-within,
+        &:hover {
+            box-shadow: 0 0 45px rgba(0,0,0,0.4);
+
+            .Countries-name {
+                text-decoration-color: var(--text);
+
+                --offset: 0.06em;
+            }
+        }
+    }
+
+    &-body {
+        display: flex;
+        flex-direction: column;
+        padding: 35px;
+        flex-grow: 1;
+    }
+
+    &-details {
+        list-style-type: none;
+        margin-top: 20px;
+
+        li {
+            margin: 5px 0;
+        }
+    }
+
+    a {
+        text-align: right;
+        color: var(--text);
+        text-decoration: none;
+        font-size: 12px;
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 40px 0;
+
+    @media screen and (min-width: 600px) {
+        flex-direction: row;
+    }
+
+    .Form-field {
+        width: 100%;
+        position: relative;
+
+        &:last-child {
+            text-align: right;
+        }
+
+        &.has-select {
+            svg {
+                content: '';
+                position: absolute;
+                right: 20px;
+                top: 50%;
+                transform: translate(0, -50%);
+                width: 13px;
+                height: 20px;
+            }
+        }
+    }
+
+    ::placeholder {
+        color: var(--text);
+        opacity: 1;
+    }
+
+    label {
+        color: var(--text);
+        position: absolute;
+        top: 50%;
+        left: 20px;
+        transform: translate(0, -50%);
+        pointer-events: none;
+        transition: transform 0.3s ease;
+        padding: 10px;
+
+        svg {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+        }
+    }
+
+    input {
+        border: 0;
+        color: var(--text);
+        border-radius: 5px;
+        padding: 20px 30px;
+        width: 100%;
+        font-size: 16px;
+        padding-left: 70px;
+
+        &:focus {
+            outline-color: var(--text);
+        }
+    }
+
+    select {
+        appearance: none;
+        width: 100%;
+        border-radius: 5px;
+        padding: 20px 30px;
+        border: 0;
+        font-size: 16px;
+        color: var(--text);
+
+        &:focus {
+            outline-color: var(--text);
+        }
+    }
+
+    @media screen and (min-width: 600px) {
+        input,
+        select {
+            max-width: 300px;
+        }
+    }
+}
+
+.ShowMore {
+    display: block;
+    margin: 100px auto;
+    padding: 20px 40px;
+    font-size: min(max(20px, 4vw), 22px);
+    background-color: var(--dark-bg);
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    color: var(--text);
+
+    &:hover,
+    &:focus {
+        background-color: var(--text);
+        color: var(--dark-bg);
+    }
+
+    span {
+        display: block;
+        font-size: min(max(14px, 4vw), 16px);
+    }
+}
+
+
+.ChangeMode,
+.Back {
+    font-size: 16px;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 5px;
+
+    span {
+        clip: rect(0 0 0 0);
+        clip-path: inset(50%);
+        height: 1px;
+        overflow: hidden;
+        position: absolute;
+        white-space: nowrap;
+        width: 1px;
+
+        @media screen and (min-width: 600px) {
+            clip: auto;
+            clip-path: inset(0);
+            height: auto;
+            overflow: hidden;
+            position: initial;
+            white-space: nowrap;
+            width: auto;
+        }
+    }
+
+    &:hover,
+    &:focus {
+        background-color: var(--text);
+        color: var(--dark-bg);
+
+        svg {
+            path {
+                fill: var(--dark-bg);
+            }
+        }
+    }
+
+    svg {
+        width: 20px;
+
+        @media screen and (min-width: 600px) {
+            margin-right: 10px;
+        }
+
+        path {
+            transition: fill 0.3s ease;
+        }
+    }
+}
+
+.Single {
+    padding-bottom: 100px;
+
+    > .Container {
+        margin: min(max(50px, 4vw), 80px) auto;
+    }
+
+    &-image {
+        width: 100%;
+
+        @media screen and (min-width: 1200px) {
+            max-width: 565px;
+        }
+    }
+
+    &-body {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: min(max(50px, 4vw), 100px);
+
+        @media screen and (min-width: 1200px) {
+            flex-direction: row;
+        }
+
+        .Countries-details {
+            display: inline-block;
+            vertical-align: top;
+
+            &:first-of-type {
+                margin-right: 70px;
+            }
+        }
+
+        p {
+            margin: 40px 0 20px 0;
+        }
+    }
+
+
+    &-borders {
+        list-style-type: none;
+        display: flex;
+        flex-wrap: wrap;
+
+        li {
+            margin: 0 10px 10px 0;
+        }
+    }
+
+    &-content {
+        a {
+            display: inline-block;
+            padding: 10px;
+            background-color: var(--dark-bg);
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            border-radius: 5px;
+            text-decoration: none;
+            color: var(--text);
+
+            &:hover,
+            &:focus {
+                background-color: var(--text);
+                color: var(--dark-bg);
+            }
+        }
+    }
+}
+
+
+.Back {
+    display: inline-block;
+    text-decoration: none;
+    padding: 20px 40px;
+    margin-bottom: min(max(50px, 4vw), 80px);
+
+    svg {
+        vertical-align: middle;
+        margin-right: 10px;
+    }
+}
