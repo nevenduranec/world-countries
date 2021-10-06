@@ -66,7 +66,7 @@ export const getters = {
 export const actions = {
     async nuxtServerInit({ commit }) {
         const countries = await this.$axios.get(
-            'http://api.countrylayer.com/v2/all?access_key=76f383c516a9ac651f7f303cbd6ea510'
+            'https://restcountries.com/v2/all'
         )
         commit('setCountries', countries.data)
 
